@@ -134,7 +134,8 @@ examples:
 	                                 //src/cpp/examples:model_pipelining \
 	                                 //src/cpp/examples:classify_image \
 	                                 //src/cpp/examples:backprop_last_layer \
-	                                 //src/cpp/examples:minimal
+	                                 //src/cpp/examples:minimal \
+	                                 //src/cpp/examples:libgptpu_utils.so
 	mkdir -p $(EXAMPLES_OUT_DIR)
 	cp -f $(BAZEL_OUT_DIR)/src/cpp/examples/two_models_one_tpu \
 	      $(BAZEL_OUT_DIR)/src/cpp/examples/two_models_two_tpus_threaded \
@@ -142,6 +143,7 @@ examples:
 	      $(BAZEL_OUT_DIR)/src/cpp/examples/classify_image \
 	      $(BAZEL_OUT_DIR)/src/cpp/examples/backprop_last_layer \
 	      $(BAZEL_OUT_DIR)/src/cpp/examples/minimal \
+	      $(BAZEL_OUT_DIR)/src/cpp/examples/libgptpu_utils.so \
 	      $(EXAMPLES_OUT_DIR)
 
 swig:

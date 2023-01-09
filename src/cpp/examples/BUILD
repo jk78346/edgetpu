@@ -1,4 +1,33 @@
 cc_library(
+    name = "gptpu_model_utils",
+    srcs = ["gptpu_model_utils.cc"],
+    hdrs = ["gptpu_model_utils.h"],
+        linkopts = ["-lpthread", "-O4"],
+        copts = ["-I./src/cpp/example"],
+    deps = [
+        "@com_google_absl//absl/strings",
+        "@libedgetpu//:header",
+        "@org_tensorflow//tensorflow/lite:builtin_op_data",
+        "@org_tensorflow//tensorflow/lite:framework",
+        "@org_tensorflow//tensorflow/lite/kernels:builtin_ops",
+    ],
+)
+
+cc_binary(
+    name = "libgptpu_utils.so",
+    testonly = 1,
+    srcs = ["gptpu_utils.cc", "gptpu_utils.h"],
+        linkopts = ["-shared", "-fPIC", "-lpthread", "-O4"],
+        linkshared=1,
+        copts = ["-I./src/cpp/example"],
+    deps = [
+        ":gptpu_model_utils",
+        "@libedgetpu//:header",
+        "@org_tensorflow//tensorflow/lite:framework",
+    ],
+)
+
+cc_library(
     name = "model_utils",
     srcs = ["model_utils.cc"],
     hdrs = ["model_utils.h"],
